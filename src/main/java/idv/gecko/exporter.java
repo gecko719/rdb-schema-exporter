@@ -68,7 +68,7 @@ public class exporter {
                     }
                     resultSet2.close();
 
-                    ResultSet resultSet4 = meta.getPrimaryKeys("", "dradvice2", tableName);
+                    ResultSet resultSet4 = meta.getPrimaryKeys("", databaseName, tableName);
                     while (resultSet4.next()) {
                         log.info("  [          PK] table={}, columnName={}, seqNo={}, pkName={}",
                                 resultSet4.getString(3),
@@ -79,7 +79,7 @@ public class exporter {
                     }
                     resultSet4.close();
 
-                    ResultSet resultSet5 = meta.getIndexInfo("", "dradvice2", tableName, true, false);
+                    ResultSet resultSet5 = meta.getIndexInfo("", databaseName, tableName, true, false);
                     while (resultSet5.next()) {
                         log.info("  [ UniqueIndex] table={}, columnName={}, nonUnique={}, sort={}",
                                 resultSet5.getString(3),
@@ -90,7 +90,7 @@ public class exporter {
                     }
                     resultSet5.close();
 
-                    ResultSet resultSet6 = meta.getIndexInfo("", "dradvice2", tableName, false, false);
+                    ResultSet resultSet6 = meta.getIndexInfo("", databaseName, tableName, false, false);
                     while (resultSet6.next()) {
                         log.info("  [!UniqueIndex] table={}, columnName={}, nonUnique={}, sort={}",
                                 resultSet6.getString(3),
@@ -105,7 +105,7 @@ public class exporter {
 
                         try {
                             // https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html#getCrossReference(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)
-                            ResultSet resultSet3 = meta.getCrossReference("", "dradvice2", tableName, "", "dradvice2", foreignTableName);
+                            ResultSet resultSet3 = meta.getCrossReference("", databaseName, tableName, "", databaseName, foreignTableName);
                             while (resultSet3.next()) {
                                 log.info("  [          FK] fkTable={}, fkTable={}, fkColumn={}, updateRule={}, deleteRule={}",
                                         resultSet3.getString(6),
